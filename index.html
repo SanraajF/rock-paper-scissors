@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rock-paper-scissors</title>
+</head>
+
+<body>
+    <script>
+        let playerPoints = 0;
+        let computerPoints = 0;
+
+        function getComputerChoice() {
+            let temp_computerSelection = (Math.random() * 100);
+
+            if (temp_computerSelection < 33) {
+                temp_computerSelection = 'rock';
+            }
+            else if (temp_computerSelection > 33 && temp_computerSelection < 66) {
+                temp_computerSelection = 'paper';
+            }
+            else {
+                temp_computerSelection = 'scissors';
+            }
+            return temp_computerSelection;
+        }
+
+        function playRound(playerSelection, computerSelection) {
+
+            playerSelection = playerSelection.toLowerCase(); // Convert to lowercase
+            computerSelection = computerSelection.toLowerCase(); // Convert to lowercase
+
+            if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
+                console.log('INVALID MOVE!');
+                console.log('----------------------');
+                return;
+            }
+            console.log(`Computer chose : ${computerSelection}`);
+            console.log(`Player chose : ${playerSelection}`);
+
+            if (playerSelection === computerSelection) {
+                console.log('DRAW!');
+                console.log('----------------------');
+            }
+            else if (playerSelection == 'rock' && computerSelection == 'paper') {
+                console.log('COMPUTER WINS!');
+                computerPoints++;
+                console.log('----------------------');
+            }
+            else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+                console.log('COMPUTER WINS!');
+                computerPoints++;
+                console.log('----------------------');
+            }
+            else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+                console.log('COMPUTER WINS!');
+                computerPoints++;
+                console.log('----------------------');
+            }
+            else {
+                console.log('PLAYER WINS!');
+                playerPoints++;
+                console.log('----------------------');
+            }
+        }
+
+        function game() {
+            let temp_playerSelection;
+            temp_playerSelection = prompt('ENTER CHOICE (rock/paper/scissors): ');
+            playRound(temp_playerSelection, getComputerChoice());
+        }
+
+        for (i = 0; i < 5; i++) {
+            game();
+        }
+
+        // Display points and winner
+        console.log(`Player Points: ${playerPoints}`);
+        console.log(`Computer Points: ${computerPoints}`);
+
+        if (playerPoints > computerPoints) {
+            console.log('PLAYER wins the game!');
+        } else if (playerPoints < computerPoints) {
+            console.log('COMPUTER wins the game!');
+        } else {
+            console.log('It\'s a tie!');
+        }
+    </script>
+</body>
+
+</html>
